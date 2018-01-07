@@ -2,13 +2,10 @@ package playground;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.Test;
-import org.omg.CORBA.INTERNAL;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by sanitizer on 1/6/2018.
@@ -51,7 +48,7 @@ public class LooperTest {
         StopWatch w = new StopWatch();
         ArrayList<Integer> test = getArray(1000000);
         w.start();
-        Looper.classicForLengthCheck(test);
+        Looper.classicLengthCheck(test);
         w.stop();
         printTime(w.getTime(), "classicForLengthCheck");
     }
@@ -77,23 +74,23 @@ public class LooperTest {
     }
 
     @Test
-    public void classicForLengthCheckMap() throws Exception {
+    public void forEachSetOnceMap() throws Exception {
         StopWatch w = new StopWatch();
         HashMap<Integer, Integer> test = getMap(1000000);
         w.start();
-        Looper.classicForLengthCheck(test);
+        Looper.forEachKeySetOnce(test);
         w.stop();
-        printTime(w.getTime(), "classicForLengthCheckMap");
+        printTime(w.getTime(), "forEachSetOnceMap");
     }
 
     @Test
-    public void classicForLengthCheckOnceMap() throws Exception {
+    public void classicForEachEntryCheckMap() throws Exception {
         StopWatch w = new StopWatch();
         HashMap<Integer, Integer> test = getMap(1000000);
         w.start();
-        Looper.classicForLengthCheckOnce(test);
+        Looper.classicForEachEntryCheckMap(test);
         w.stop();
-        printTime(w.getTime(), "classicForLengthCheckOnceMap");
+        printTime(w.getTime(), "classicForEachEntryCheckMap");
     }
 
     private void printTime (long time, String methodName) {
